@@ -5,7 +5,7 @@ module.exports = function (RED) {
 
         this.password = config.password;
         this.address = config.address;
-        //this.interface = config.interface;
+        this.mac = config.mac;
 
         this.on("close", function(done)
         {

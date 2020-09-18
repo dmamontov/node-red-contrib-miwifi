@@ -38,8 +38,7 @@
     "url-join": "^4.0.1"
   },
   "directories": {
-    "lib": "lib",
-    "nodes": "nodes"
+    "lib": "lib"
   },
   "devDependencies": {}
 }
