@@ -37,9 +37,9 @@
     "request-promise-native": "^1.0.9",
     "url-join": "^4.0.1"
   },
-  "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "nodes": "nodes"
   },
   "devDependencies": {}
 }
