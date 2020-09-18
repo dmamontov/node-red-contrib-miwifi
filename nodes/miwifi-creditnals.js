@@ -7,8 +7,7 @@ module.exports = function (RED) {
         this.address = config.address;
         this.mac = config.mac;
 
-        this.on("close", function(done)
-        {
+        this.on("close", function(done) {
             done();
         });
     }
