@@ -1,0 +1,63 @@
+<script type="text/html" data-template-name="miwifi-status">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-creditnals"><i class="icon-tag"></i> Creditnals</label>
+        <input type="text" id="node-input-creditnals" placeholder="MiWifi creditnals">
+    </div>
+    <div class="form-row">
+        <label for="node-input-interval">Interval</label>
+        <input type="number" id="node-input-interval" placeholder="200">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-unit">Unit</label>
+        <select id="node-input-unit">
+            <option>milliseconds</option>
+            <option>seconds</option>
+            <option>minutes</option>
+            <option>hours</option>
+            <option>days</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="miwifi-status">
+    <p>Getting status MiWifi</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('miwifi-status',{
+        category: 'MiWifi',
+        color: '#2e7dfa',
+        defaults: {
+            name: {
+                value: null,
+                required: false
+            },
+            creditnals: {
+                type: "miwifi-creditnals",
+                required: true
+            },
+            interval: {
+                value: 10,
+                required: true,
+                validate: RED.validators.number()
+            },
+            unit: {
+                value: 'seconds',
+                required: true
+            }
+        },
+        inputs:0,
+        outputs:1,
+        align: 'left',
+        outputLabels: ["debug"],
+        icon: 'miwifi.png',
+        label: function() {
+            return this.name || "status";
+        }
+    });
+</script>

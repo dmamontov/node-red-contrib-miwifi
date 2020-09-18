@@ -1,0 +1,40 @@
+{
+  "name": "node-red-contrib-miwifi",
+  "node-red": {
+    "nodes": {
+      "miwifi-creditnals": "nodes/miwifi-creditnals.js",
+      "miwifi-status": "nodes/miwifi-status.js",
+      "miwifi-speed": "nodes/miwifi-speed.js",
+      "miwifi-reboot": "nodes/miwifi-reboot.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "miwifi",
+    "mqtt"
+  ],
+  "bugs": {
+    "url": "https://github.com/dmamontov/node-red-contrib-miwifi/issues/"
+  },
+  "homepage": "https://github.com/dmamontov/node-red-contrib-miwifi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmamontov/node-red-contrib-miwifi.git"
+  },
+  "version": "1.0.0",
+  "description": "MiWifi integration",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Mamontov",
+  "license": "GPL",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "crypto-js": "^4.0.0",
+    "md5": "^2.3.0",
+    "moment": "^2.28.0",
+    "querystring": "^0.2.0",
+    "request-promise-native": "^1.0.9",
+    "url-join": "^4.0.1"
+  }
+}

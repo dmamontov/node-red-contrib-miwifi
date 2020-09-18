@@ -1,0 +1,39 @@
+<script type="text/html" data-template-name="miwifi-reboot">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-creditnals"><i class="icon-tag"></i> Creditnals</label>
+        <input type="text" id="node-input-creditnals" placeholder="MiWifi creditnals">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="miwifi-reboot">
+    <p>Reboot MiWifi</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('miwifi-reboot',{
+        category: 'MiWifi',
+        color: '#2e7dfa',
+        defaults: {
+            name: {
+                value: null,
+                required: false
+            },
+            creditnals: {
+                type: "miwifi-creditnals",
+                required: true
+            }
+        },
+        inputs:1,
+        outputs:1,
+        align: 'right',
+        outputLabels: ["debug"],
+        icon: 'miwifi.png',
+        label: function() {
+            return this.name || "speed";
+        }
+    });
+</script>

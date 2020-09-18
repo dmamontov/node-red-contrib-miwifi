@@ -1,0 +1,48 @@
+<script type="text/x-red" data-template-name="miwifi-creditnals">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    <div class="form-row">
+        <label for="node-config-input-name" class="l-width"><i class="fa fa-bookmark"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-address"><i class="fa fa-lock"></i> Address</label>
+        <input type="text" id="node-config-input-address" placeholder="MiWifi address">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password" placeholder="MiWifi password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-mac"><i class="fa fa-lock"></i> Server Mac Address</label>
+        <input type="text" id="node-config-input-mac" placeholder="Server mac address">
+    </div>
+<br>
+
+</script>
+
+<script type='text/javascript'>
+    RED.nodes.registerType('miwifi-creditnals', {
+        category: 'config',
+        defaults: {
+            name: {
+                value: null,
+                required: false
+            },
+            address: {
+                value: "http://miwifi.com",
+                required: true
+            },
+            password: {
+                value: null,
+                required: true
+            },
+            mac: {
+                value: null,
+                required: true
+            }
+        },
+        label: function() {
+            return this.name || this.address;
+        }
+    });
+</script>
