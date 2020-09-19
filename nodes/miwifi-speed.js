@@ -1,64 +1,77 @@
-const moment = require('moment');
-const md5 = require('md5');
-const MiWifi = require('../lib/miwifi.js');
-
 module.exports = function(RED) {
-    function speed(config)
-    {
+    function speed(config) {
         RED.nodes.createNode(this, config);
 
         this.creditnals = config.creditnals;
         this.history = config.history;
-        this.miwifi = new MiWifi(
-            RED.nodes.getNode(this.creditnals),
-            config.id,
-            this.creditnals,
-            this
-        );
-        this.interval = moment.duration(parseInt(config.interval), config.unit).asMilliseconds();
-        this.reconnected = false;
+        this.clientNode = RED.nodes.getNode(this.creditnals);
+        this.launching = false;
 
-        this.status({});
+        let node = this;
 
-        this.trigger = async function trigger() {
-            var token = await this.miwifi.login(this.reconnected);
+        if (node.clientNode) {
+            node.status({fill: "red", shape: "ring", text: "disconnected"});
 
-            if (token === undefined) {
-                if (this.context().global.get(md5(this.creditnals))) {
-                    this.reconnected = true;
+            node.clientNode.register(node);
 
-                    this.status({fill: "red", shape: "dot", text: "error"});
-                } else {
-                    this.status({fill: "yellow", shape: "dot", text: "wait"});
-                }
-            } else {
-                this.reloging = false;
-
-                this.status({fill: "green", shape: "dot", text: "connected"});
-
-                this.log("Token: " + token);
-
-                var result = await this.miwifi.speed(this.history);
-
-                if (result === undefined || result.code === undefined || result.code > 0) {
-                    this.reconnected = true;
-
-                    this.status({fill: "blue", shape: "dot", text: "re-connected"});
-                } else {
-                    this.send({
-                        payload: result
-                    });
-                }
+            if (node.clientNode.connected) {
+                node.status({ fill: "green", shape: "ring", text: "connected" });
             }
-        }.bind(this);
 
-        setTimeout(this.trigger, 1000);
-        this.intervalHandle = setInterval(this.trigger, this.interval);
+            this.errorHandler = function(error) {
+                node.status({ fill: "red", shape: "ring", text: "error" });
 
-        this.on('close', function() {
-            this.miwifi.logout().then(result => {
-                clearInterval(this.intervalHandle);
+                node.launching = false;
+
+                node.clientNode.reconnect();
+
+                if (done) {
+                    done(error);
+                } else {
+                    node.error(error, error.message);
+                }
+            };
+
+            this.on("input", function(msg, send, done) {
+                if (node.clientNode.connected) {
+                    node.status({ fill: "green", shape: "ring", text: "connected" });
+                } else {
+                    node.status({ fill: "red", shape: "ring", text: "disconnected" });
+                }
+
+                node.launching = true;
+
+                node.debug("Token: " + node.clientNode.client.token);
+
+                node.clientNode.client.speed(node.history)
+                    .then(speed => {
+                        if (speed.code === undefined || speed.code > 0) {
+                            node.errorHandler(speed.code);
+                        } else {
+                            node.send({payload: speed});
+                        }
+
+                        node.launching = false;
+                    })
+                    .catch(error => node.errorHandler);
+
             });
+        }
+
+        this.on('close', function(done) {
+            try {
+                if (node.clientNode) {
+                    node.clientNode.deregister(node, function() {
+                        node.launching = false;
+
+                        done();
+                    });
+                } else {
+                    done();
+                }
+            } catch(error) {
+                done();
+            }
         });
     }
 
