@@ -5,8 +5,10 @@ Nodes:
 * miwifi-speed - internet connection speed request
 * miwifi-reboot - reboot router
   
-Installation:  
+Installation:
+```shell script
 npm install node-red-contrib-miwifi
+```
 
 TODO:
 I really want to modify this library. But for this I need your support and wishes.
