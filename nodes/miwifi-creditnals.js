@@ -1,4 +1,4 @@
-const MiWifi = require('../lib/miwifi.js');
+const MiWifiClient = require('../lib/miwifi-client.js');
 
 module.exports = function(RED) {
     function creditnals(config) {
@@ -99,7 +99,7 @@ module.exports = function(RED) {
                 node.connecting = true;
 
                 try {
-                    node.client = new MiWifi(node.address, node.password, node.mac);
+                    node.client = new MiWifiClient(node.address, node.password, node.mac);
 
                     node.setStatusOfRegisteredNodes({ fill: "yellow", shape: "ring", text: "connecting" });
 

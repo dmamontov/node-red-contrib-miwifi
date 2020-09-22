@@ -11,7 +11,7 @@
   "keywords": [
     "node-red",
     "miwifi",
-    "mqtt"
+    "xiaomi"
   ],
   "bugs": {
     "url": "https://github.com/dmamontov/node-red-contrib-miwifi/issues/"
@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/dmamontov/node-red-contrib-miwifi.git"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MiWifi integration",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,7 +32,6 @@
     "axios": "^0.20.0",
     "crypto-js": "^4.0.0",
     "md5": "^2.3.0",
-    "moment": "^2.28.0",
     "querystring": "^0.2.0",
     "url-join": "^4.0.1"
   },
