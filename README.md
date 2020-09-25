@@ -1,9 +1,12 @@
 # Node-RED nodes for integration MiWifi
 
 ### Nodes:
-* ![status](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-status.png) - requesting the status of the router and the internet
-* ![speed](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-speed.png) - internet connection speed request
-* ![reboot](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-reboot.png) - reboot router
+![status](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-status.png)
+<br><br>
+![speed](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-speed.png)
+<br><br>
+![reboot](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-reboot.png)
+
 
 ### Installation:
 ```
@@ -11,6 +14,10 @@ npm install node-red-contrib-miwifi
 ```
 
 ### Specification:
+* status - requesting the status of the router and the internet
+* speed - internet connection speed request
+* reboot - reboot router
+
 input:
 ```
 Anything (only required to run)
