@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/dmamontov/node-red-contrib-miwifi.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MiWifi integration",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
