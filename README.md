@@ -1,5 +1,7 @@
 # Node-RED nodes for integration MiWifi
 
+# I no longer use, switched to Home Assistant [hass-miwifi](https://github.com/dmamontov/hass-miwifi)
+
 ### Nodes:
 ![status](https://raw.githubusercontent.com/dmamontov/node-red-contrib-miwifi/master/images/miwifi-status.png)
 <br><br>
